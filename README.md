@@ -7,6 +7,8 @@ Welcome to **Loggifyer**, a simple, fast and cross-platform logger library.
 
 **Loggifyer** is implemented as a singleton, which means that you can access the logging functionality from anywhere in your code.
 
+Overall, **Loggifyer** is a simple and convenient way to add logging to your C++ projects, whether you are developing a small application or a large, complex software system.
+
 This library is from the [PTP](https://github.com/MrOrnithorynque/PTP/) library family.
 
 ## Features
