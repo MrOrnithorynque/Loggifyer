@@ -1,6 +1,8 @@
 # PTP::Loggifyer
 Welcome to **Loggifyer**, a simple, fast and cross-platform logger library.
 
+Loggifyer is a logging library that makes it easy to add log messages to your C++ code using only macros. It is designed to be lightweight, easy to use, and cross-platform, supporting Windows, Linux, and macOS.
+
 This library is from the [PTP](https://github.com/MrOrnithorynque/PTP/) library family.
 
 
@@ -8,7 +10,7 @@ This library is from the [PTP](https://github.com/MrOrnithorynque/PTP/) library 
 - Simple and straightforward interface.
 - Compatible with Windows, Linux, and Mac.
 - Easy to read thanks to coherent coloring.
-- Different Log levels : Message < Info < Warning < Error.
+- Different Log levels : Message < Info < Ok < Warning < Error.
 - Multi threading safe.
 - Printf like formatting.
 - Memory safe.
