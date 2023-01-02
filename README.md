@@ -15,7 +15,7 @@ This library is from the [PTP](https://github.com/MrOrnithorynque/PTP/) library 
 - Printf like formatting.
 - Memory safe.
 - Nice formatting option for messages with new lines.
-- (FUTURE) Fully customizable with config file.
+- (WIP) Fully customizable with config file.
 
 ## Installation
 To install **Loggifyer**, follow these steps:
