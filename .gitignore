@@ -1,0 +1,31 @@
+# Object files and libraries
+*.o
+*.a
+*.so
+*.dll
+*.lib
+
+# Executables
+*.exe
+PTP_Loggifyer_test
+
+# Other generated files
+*.bin
+*.dat
+*.log
+*.map
+
+# Build directories
+build/
+debug/
+release/
+
+# IDEs and editors
+*.sdf
+*.suo
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.vcxproj.rootnamespace
+.vscode/
