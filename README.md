@@ -80,17 +80,17 @@ Output (no colors are shown in this readme output but don't worry your output wi
 
 <pre>
   <code>
-[Info   ] 0000-00-00 00:00:00.000 : This is a Info message.
-[Message] 0000-00-00 00:00:00.000 : This is just a simple message.
-<font color="#00CC00">[Ok     ] 0000-00-00 00:00:00.000 : This is a Ok message to tell you that everything working properly.</font>
-<font color="#FFCC00">[Warning] 0000-00-00 00:00:00.000 : Be careful! you are looking good today. This was a Warning message.</font>
-<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.000 : This is a Error log sample.</font>
-<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.000 : Only Error logs are displayed. because the log level is 4.</font>
-<font color="#FFCC00">[Warning] 0000-00-00 00:00:00.000 : This warning will be displayed.</font>
-<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.000 : As you can see, only Error and Warning logs are displayed.</font>
-<font color="#00CC00">[Ok     ] 0000-00-00 00:00:00.000 : This Ok message will be displayed because logs are enabled.</font>
-[Info   ] 2023-01-02 13:36:37.871 : This is a Info message with complex formatting.
+[Info   ] 0000-00-00 00:00:00.001 : This is a Info message.
+[Message] 0000-00-00 00:00:00.002 : This is just a simple message.
+<font color="#00CC00">[Ok     ] 0000-00-00 00:00:00.003 : This is a Ok message to tell you that everything working properly</font>
+<font color="#FFCC00">[Warning] 0000-00-00 00:00:00.004 : Be careful! you are looking good today. This was a Warning message</font>
+<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.005 : This is a Error log sample.
+[Error  ] 0000-00-00 00:00:00.006 : Only Error logs are displayed. because the log level is 4.</font>
+<font color="#FFCC00">[Warning] 0000-00-00 00:00:00.007 : This warning will be displayed.</font>
+<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.008 : As you can see, only Error and Warning logs are displayed.</font>
+<font color="#00CC00">[Ok     ] 0000-00-00 00:00:00.009 : This Ok message will be displayed because logs are enabled.</font>
+[Info   ] 0000-00-00 00:00:00.010 : This is a Info message with complex formatting.
                                     Because complex formatting is enabled.
-[Info   ] 2023-01-02 13:36:37.875 : This is a Info message without complex formatting.
+[Info   ] 0000-00-00 00:00:00.011 : This is a Info message without complex formatting.
   </code>
 </pre>
