@@ -5,12 +5,12 @@
 /**
  * @brief Macro to initialize the logger.
  */
-// #define PTP_INIT_LOGGIFYER              ptp::Loggifyer::Logger* ptp::Loggifyer::Logger::oSingletonLogger = nullptr;
+// #define PTP_INIT_LOGGIFYER              ptp::log::Logger* ptp::log::Logger::oSingletonLogger = nullptr;
 
 /**
  * @brief Macro to get the instance of the logger.
  */
-#define PTP_GET_LOG_INSTANCE            ptp::Loggifyer::Logger::getInstance()
+#define PTP_GET_LOG_INSTANCE            ptp::log::Logger::getInstance()
 
 /**
  * @brief Macro to set the log level.
@@ -41,7 +41,7 @@
 /**
  * @brief Macro check if the logs are enable.
  */
-#define PTP_IS_LOG_ENABLE               PTP_GET_LOG_INSTANCE.ptp::Loggifyer::Logger::isLogEnabled()
+#define PTP_IS_LOG_ENABLE               PTP_GET_LOG_INSTANCE.ptp::log::Logger::isLogEnabled()
 
 /**
  * Macro to enable complex formatting on logs.
@@ -75,8 +75,8 @@
  */
 #define PTP_LOG_MESSAGE(message, ...)                                                           \
     do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::Loggifyer::LogLevel::Message >= PTP_GET_LOG_LEVEL)        \
-            PTP_GET_LOG_INSTANCE.log(ptp::Loggifyer::LogLevel::Message, message, ##__VA_ARGS__);\
+        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Message >= PTP_GET_LOG_LEVEL)        \
+            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Message, message, ##__VA_ARGS__);\
     } while (false)
 
 /**
@@ -86,8 +86,8 @@
  */
 #define PTP_LOG_INFO(message, ...)                                                              \
     do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::Loggifyer::LogLevel::Info >= PTP_GET_LOG_LEVEL)           \
-            PTP_GET_LOG_INSTANCE.log(ptp::Loggifyer::LogLevel::Info, message, ##__VA_ARGS__);   \
+        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Info >= PTP_GET_LOG_LEVEL)           \
+            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Info, message, ##__VA_ARGS__);   \
     } while (false)
 
 /**
@@ -97,8 +97,8 @@
  */
 #define PTP_LOG_OK(message, ...)                                                            \
     do {                                                                                    \
-        if (PTP_IS_LOG_ENABLE && ptp::Loggifyer::LogLevel::Ok >= PTP_GET_LOG_LEVEL)         \
-            PTP_GET_LOG_INSTANCE.log(ptp::Loggifyer::LogLevel::Ok, message, ##__VA_ARGS__); \
+        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Ok >= PTP_GET_LOG_LEVEL)         \
+            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Ok, message, ##__VA_ARGS__); \
     } while (false)
 
 /**
@@ -108,8 +108,8 @@
  */
 #define PTP_LOG_WARNING(message, ...)                                                           \
     do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::Loggifyer::LogLevel::Warning >= PTP_GET_LOG_LEVEL)        \
-            PTP_GET_LOG_INSTANCE.log(ptp::Loggifyer::LogLevel::Warning, message, ##__VA_ARGS__);\
+        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Warning >= PTP_GET_LOG_LEVEL)        \
+            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Warning, message, ##__VA_ARGS__);\
     } while (false)
 
 /**
@@ -119,6 +119,6 @@
  */
 #define PTP_LOG_ERROR(message, ...)                                                             \
     do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::Loggifyer::LogLevel::Error >= PTP_GET_LOG_LEVEL)          \
-            PTP_GET_LOG_INSTANCE.log(ptp::Loggifyer::LogLevel::Error, message, ##__VA_ARGS__);  \
+        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Error >= PTP_GET_LOG_LEVEL)          \
+            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Error, message, ##__VA_ARGS__);  \
     } while (false)

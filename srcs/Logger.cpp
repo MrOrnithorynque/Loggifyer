@@ -2,7 +2,7 @@
 
 #include "Logger.hpp"
 
-namespace ptp::Loggifyer
+namespace ptp::log
 {
 // public methods
 
@@ -103,4 +103,4 @@ namespace ptp::Loggifyer
         << std::endl;
     }
 
-} // namespace ptp::Loggifyer
+} // namespace ptp::log

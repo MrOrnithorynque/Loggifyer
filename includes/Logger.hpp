@@ -32,7 +32,7 @@
 
 #endif
 
-namespace ptp::Loggifyer
+namespace ptp::log
 {
     enum class LogLevel
     {
@@ -96,5 +96,5 @@ namespace ptp::Loggifyer
 
     };
 
-} // namespace ptp::Loggifyer
+} // namespace ptp::log
 
