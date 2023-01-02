@@ -1,6 +1,9 @@
 # PTP::Loggifyer
 Welcome to **Loggifyer**, a simple, fast and cross-platform logger library.
 
+This library is from the [PTP](https://github.com/MrOrnithorynque/PTP/) library family.
+
+
 ## Features
 - Simple and straightforward interface.
 - Compatible with Windows, Linux, and Mac.
@@ -66,7 +69,7 @@ int main ( const int argc, const char** argv )
     return 0;
 }
 ```
-Output :
+Output (no colors are shown in this readme output but don't worry your output will be colored :shipit:):
 
 <pre>
   <code>
