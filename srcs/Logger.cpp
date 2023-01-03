@@ -15,8 +15,6 @@ namespace ptp::log
 
     void Logger::log(LogLevel eLevel, const char* message, ...)
     {
-        m_oMutex.lock();
-
         char buffer[1024];
 
         va_list args;
@@ -25,8 +23,6 @@ namespace ptp::log
         va_end(args);
 
         writeMessage(eLevel, buffer);
-
-        m_oMutex.unlock();
     }
 
 // private methods
