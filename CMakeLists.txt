@@ -20,7 +20,6 @@ else ()
         -Wall       # Enable all warnings even extra ones.
         -pedantic   # Enable pedantic warnings.
         -std=c++17  # Use c++17.
-        -g3         # Memory debug mode.
     )
 endif (MSVC)
 
@@ -49,7 +48,7 @@ set_target_properties(
     ${PROJECT_NAME}
 )
 
-option(PTP_Loggifyer_BUILD_TESTS "Build the tests for PTP_Loggifyer" OFF)
+option(PTP_Loggifyer_BUILD_TESTS "Build the tests for PTP_Loggifyer" ON)
 
 if (PTP_Loggifyer_BUILD_TESTS)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/tests/")

@@ -61,64 +61,53 @@
  *  {0, 0, 0, 0}}
  */
 #define PTP_LOG_COMPLEX_FORMATTING(bEnableComplexFormatting)    \
-    do {                                                        \
-        if (bEnableComplexFormatting == true)                   \
-            PTP_GET_LOG_INSTANCE.enableComplexFormatting();     \
-        else                                                    \
-            PTP_GET_LOG_INSTANCE.disableComplexFormatting();    \
-    } while (false)                                             \
+    if (bEnableComplexFormatting == true)                       \
+        PTP_GET_LOG_INSTANCE.enableComplexFormatting();         \
+    else                                                        \
+        PTP_GET_LOG_INSTANCE.disableComplexFormatting();
+
 
 /**
  * @brief Macro print message log message.
  *
  * @note It used printf format style.
  */
-#define PTP_LOG_MESSAGE(message, ...)                                                           \
-    do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Message >= PTP_GET_LOG_LEVEL)        \
-            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Message, message, ##__VA_ARGS__);\
-    } while (false)
+#define PTP_LOG_MESSAGE(message, ...)                                                   \
+    if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Message >= PTP_GET_LOG_LEVEL)          \
+        PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Message, message, ##__VA_ARGS__);
 
 /**
  * @brief Macro print info log message.
  *
  * @note It used printf format style.
  */
-#define PTP_LOG_INFO(message, ...)                                                              \
-    do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Info >= PTP_GET_LOG_LEVEL)           \
-            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Info, message, ##__VA_ARGS__);   \
-    } while (false)
+#define PTP_LOG_INFO(message, ...)                                                  \
+    if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Info >= PTP_GET_LOG_LEVEL)         \
+        PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Info, message, ##__VA_ARGS__);
 
 /**
  * @brief Macro print ok log message.
  *
  * @note It used printf format style.
  */
-#define PTP_LOG_OK(message, ...)                                                            \
-    do {                                                                                    \
-        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Ok >= PTP_GET_LOG_LEVEL)         \
-            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Ok, message, ##__VA_ARGS__); \
-    } while (false)
+#define PTP_LOG_OK(message, ...)                                                        \
+    if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Ok >= PTP_GET_LOG_LEVEL)           \
+        PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Ok, message, ##__VA_ARGS__);
 
 /**
  * @brief Macro print warning log message.
  *
  * @note It used printf format style.
  */
-#define PTP_LOG_WARNING(message, ...)                                                           \
-    do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Warning >= PTP_GET_LOG_LEVEL)        \
-            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Warning, message, ##__VA_ARGS__);\
-    } while (false)
+#define PTP_LOG_WARNING(message, ...)                                                   \
+    if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Warning >= PTP_GET_LOG_LEVEL)          \
+        PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Warning, message, ##__VA_ARGS__);
 
 /**
  * @brief Macro print error log message.
  *
  * @note It used printf format style.
  */
-#define PTP_LOG_ERROR(message, ...)                                                             \
-    do {                                                                                        \
-        if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Error >= PTP_GET_LOG_LEVEL)          \
-            PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Error, message, ##__VA_ARGS__);  \
-    } while (false)
+#define PTP_LOG_ERROR(message, ...)                                                 \
+    if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Error >= PTP_GET_LOG_LEVEL)        \
+        PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Error, message, ##__VA_ARGS__);

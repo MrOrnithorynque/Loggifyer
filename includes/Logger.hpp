@@ -64,21 +64,21 @@ namespace ptp::log
 
         void log(LogLevel eLevel, const char* message, ...);
 
-        std::string getTimestampFormat() const;
+        inline std::string getTimestampFormat() const;
 
-        inline LogLevel getLogLevel() const         { return m_eGlobalLogLevel; }
+        inline LogLevel getLogLevel();
 
-        inline void setLogLevel(LogLevel eLogLevel) { m_eGlobalLogLevel = eLogLevel; }
+        inline void setLogLevel(LogLevel eLogLevel);
 
-        inline void enableLog()                     { m_bIsLogEnable = true; }
+        inline void enableLog();
 
-        inline void disableLog()                    { m_bIsLogEnable = false; }
+        inline void disableLog();
 
-        inline void enableComplexFormatting()       { m_bIsComplexFormattingEnable = true; }
+        inline void enableComplexFormatting();
 
-        inline void disableComplexFormatting()      { m_bIsComplexFormattingEnable = false; }
+        inline void disableComplexFormatting();
 
-        inline bool isLogEnabled() const            { return m_bIsLogEnable; }
+        inline bool isLogEnabled();
 
     private:
 
@@ -87,6 +87,14 @@ namespace ptp::log
         void writeMessage(LogLevel eLevel, const char* message);
 
         std::mutex      m_oMutex;
+
+        std::mutex      m_oEnableLogsMutex;
+
+        std::mutex      m_oTimestampMutex;
+
+        std::mutex      m_oGlobalLogLevelMutex;
+
+        std::mutex      m_oComplexFormattingMutex;
 
         LogLevel        m_eGlobalLogLevel               = LogLevel::Message;
 
@@ -98,3 +106,5 @@ namespace ptp::log
 
 } // namespace ptp::log
 
+// Includes for inline functions
+#include "Logger.inl"
