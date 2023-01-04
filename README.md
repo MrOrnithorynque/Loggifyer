@@ -33,7 +33,7 @@ To use **Loggifyer** in your project, simply include the Loggifyer.hpp header fi
 
 InAnyCppFile.cpp :
 ```cpp
-#include "PTP_Loggifyer.hpp"
+#include "PTP/Loggifyer.hpp"
 
 int main ( const int argc, const char** argv )
 {

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 
 project(
-    "PTP_Loggifyer"
+    "Loggifyer"
     VERSION 0.1 DESCRIPTION "Easy to use and simple logging librairy using only macros"
     LANGUAGES CXX
 )
@@ -30,8 +30,8 @@ set(
 
 set(
     HDRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/includes/PTP_Loggifyer.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/includes/Logger.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/includes/PTP/Loggifyer.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/includes/PTP/Loggifyer/Logger.hpp"
 )
 
 add_library(${PROJECT_NAME} STATIC ${SRCS} ${HDRS})
@@ -39,7 +39,7 @@ add_library(${PROJECT_NAME} STATIC ${SRCS} ${HDRS})
 target_include_directories(
     ${PROJECT_NAME}
     PUBLIC
-    "${CMAKE_CURRENT_SOURCE_DIR}/includes"
+    "${CMAKE_CURRENT_SOURCE_DIR}/includes/"
 )
 
 set_target_properties(
@@ -48,8 +48,8 @@ set_target_properties(
     ${PROJECT_NAME}
 )
 
-option(PTP_Loggifyer_BUILD_TESTS "Build the tests for PTP_Loggifyer" ON)
+option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" ON)
 
-if (PTP_Loggifyer_BUILD_TESTS)
+if (Loggifyer_BUILD_TESTS)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/tests/")
 endif ()

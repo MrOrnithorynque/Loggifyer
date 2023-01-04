@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Logger.hpp"
+#include "Loggifyer/Logger.hpp"
 
 /**
  * @brief Macro to initialize the logger.

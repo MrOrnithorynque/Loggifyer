@@ -29,7 +29,7 @@ set(
 
 add_executable(${PROJECT_NAME} ${SRCS})
 
-target_link_libraries(${PROJECT_NAME} PTP_Loggifyer)
+target_link_libraries(${PROJECT_NAME} Loggifyer)
 
 # Add the test to the project
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
