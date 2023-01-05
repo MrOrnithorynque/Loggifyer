@@ -48,7 +48,7 @@ set_target_properties(
     ${PROJECT_NAME}
 )
 
-option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" ON)
+option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" OFF)
 
 if (Loggifyer_BUILD_TESTS)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/tests/")
