@@ -66,6 +66,10 @@
     else                                                        \
         PTP_GET_LOG_INSTANCE.disableComplexFormatting();
 
+#define PTP_LOG_ENABLE_COMPLEX_FORMATTING   \
+    PTP_LOG_COMPLEX_FORMATTING(true)
+
+#define PTP_LOG_ENABLE_COMPLEX_FORMATTING_ONCE
 
 /**
  * @brief Macro print message log message.
@@ -111,3 +115,9 @@
 #define PTP_LOG_ERROR(message, ...)                                                 \
     if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Error >= PTP_GET_LOG_LEVEL)        \
         PTP_GET_LOG_INSTANCE.log(ptp::log::LogLevel::Error, message, ##__VA_ARGS__);
+
+/*
+#define PTP_LOG_MESSAGE_GRP(name, message, ...) \
+    if (PTP_IS_LOG_ENABLE && ptp::log::LogLevel::Message >= PTP_GET_LOG_LEVEL) \
+        PTP_GET_LOG_INSTANCE.logGroup(name, ptp::log::LogLevel::Message, message, ##__VA_ARGS__);
+*/

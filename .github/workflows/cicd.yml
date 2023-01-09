@@ -1,0 +1,27 @@
+name: check if the project is building
+
+on:
+  [push]
+
+jobs:
+  build-test-ubuntu:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: install essential
+        run: sudo apt install build-essential
+
+      - name: get-cmake
+        uses: lukka/get-cmake@v3.24.3
+
+      - name: Get specific version CMake, v3.17.0
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: 3.17.0
+
+      - name: make project
+        run: |
+          mkdir -p build
+          cd build
+          cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON ..
+          cmake --build .

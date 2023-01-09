@@ -45,8 +45,6 @@ namespace ptp::log
         None,
     };
 
-    #define MILLISECONDS
-
     /**
      * @brief Singleton class Logger. Use the PTP_LOG_INIT macro to initialize the logger.
      */

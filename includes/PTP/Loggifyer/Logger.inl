@@ -12,19 +12,11 @@ namespace ptp::log
 
         std::stringstream timestamp;
 
-        #ifdef MILLISECONDS
+        auto elapsed        = now.time_since_epoch();
 
-            auto elapsed        = now.time_since_epoch();
+        auto milliseconds   = std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() % 1000;
 
-            auto milliseconds   = std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() % 1000;
-
-            timestamp << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << "." << std::setw(3) << std::setfill('0') << milliseconds;
-
-        #else
-
-            timestamp << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << " ";
-
-        #endif
+        timestamp << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << "." << std::setw(3) << std::setfill('0') << milliseconds;
 
         return timestamp.str();
     }

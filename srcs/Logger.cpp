@@ -19,7 +19,23 @@ namespace ptp::log
 
         va_list args;
         va_start(args, message);
-        vsnprintf(buffer, sizeof(buffer), message, args);
+
+        #if defined __linux__
+
+            vsnprintf(buffer, sizeof(buffer), message, args);
+
+        #elif defined _WIN32
+
+            vsprintf_s(buffer, sizeof(buffer), message, args);
+
+        #else // unknown platform
+
+            writeMessage(LogLevel::Error, "Unknown platform.");
+            va_end(args);
+            return;
+
+        #endif
+
         va_end(args);
 
         writeMessage(eLevel, buffer);

@@ -10,19 +10,6 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (MSVC)
-    add_compile_options(
-        /WX # Anti basti-code argument that treat all warnings as errors.
-    )
-else ()
-    add_compile_options(
-        -Werror     # Anti basti-code argument that treat all warnings as errors.
-        -Wall       # Enable all warnings even extra ones.
-        -pedantic   # Enable pedantic warnings.
-        -std=c++17  # Use c++17.
-    )
-endif (MSVC)
-
 set(
     SRCS
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Logger.cpp"
@@ -36,6 +23,24 @@ set(
 
 add_library(${PROJECT_NAME} STATIC ${SRCS} ${HDRS})
 
+# Set warning flags
+if (MSVC)
+    target_compile_options(
+        ${PROJECT_NAME}
+        PRIVATE
+        /WX # Treat all warnings as errors.
+    )
+else ()
+    target_compile_options(
+        ${PROJECT_NAME}
+        PRIVATE
+        -Werror
+        -Wall       # Enable all warnings, even extra ones.
+        -pedantic   # Enable pedantic warnings.
+        -std=c++17  # Use C++17.
+    )
+endif (MSVC)
+
 target_include_directories(
     ${PROJECT_NAME}
     PUBLIC
@@ -48,7 +53,7 @@ set_target_properties(
     ${PROJECT_NAME}
 )
 
-option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" OFF)
+option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" ON)
 
 if (Loggifyer_BUILD_TESTS)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/tests/")

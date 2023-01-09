@@ -92,5 +92,6 @@ Output (no colors are shown in this readme output but don't worry your output wi
 [Info   ] 0000-00-00 00:00:00.010 : This is a Info message with complex formatting.
                                     Because complex formatting is enabled.
 [Info   ] 0000-00-00 00:00:00.011 : This is a Info message without complex formatting.
+Because complex formatting is disabled.
   </code>
 </pre>
