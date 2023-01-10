@@ -52,7 +52,7 @@ namespace ptp::log
     {
     public:
 
-        Logger() = default;
+        Logger() = delete;
 
         Logger(Logger &) = delete;
 
