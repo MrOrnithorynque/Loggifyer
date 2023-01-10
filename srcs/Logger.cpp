@@ -79,7 +79,7 @@ namespace ptp::log
                         ? "[Ok     ]" : "[Info   ]";
 
         std::cerr
-            << file << "(" << line << ")\n"
+            << file << "(" << line << ")\t"
             << color
                 << levelString
             << WHITE
