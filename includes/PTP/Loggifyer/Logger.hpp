@@ -60,7 +60,7 @@ namespace ptp::log
 
         static Logger& getInstance();
 
-        void log(LogLevel eLevel, const char* message, ...);
+        void log(LogLevel eLevel, const char* file, int line, const char* message, ...);
 
         inline std::string getTimestampFormat() const;
 
@@ -82,7 +82,7 @@ namespace ptp::log
 
         std::string formatMessage(const char* sMessage);
 
-        void writeMessage(LogLevel eLevel, const char* message);
+        void writeMessage(LogLevel eLevel, const char* message, const char* file, int line);
 
         std::mutex      m_oMutex;
 

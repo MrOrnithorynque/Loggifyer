@@ -7,7 +7,7 @@
 
 # Executables
 *.exe
-PTP_Loggifyer_test
+Loggifyer_test
 
 # Other generated files
 *.bin

@@ -13,7 +13,7 @@ namespace ptp::log
         return oSingletonLogger;
     }
 
-    void Logger::log(LogLevel eLevel, const char* message, ...)
+    void Logger::log(LogLevel eLevel, const char* file, int line, const char* message, ...)
     {
         char buffer[1024];
 
@@ -38,7 +38,7 @@ namespace ptp::log
 
         va_end(args);
 
-        writeMessage(eLevel, buffer);
+        writeMessage(eLevel, buffer, file, line);
     }
 
 // private methods
@@ -64,7 +64,7 @@ namespace ptp::log
         return sFormattedMessage.str();
     }
 
-    void Logger::writeMessage(LogLevel eLevel, const char* message)
+    void Logger::writeMessage(LogLevel eLevel, const char* message, const char* file, int line)
     {
         std::string color = (eLevel == LogLevel::Message)
             ? WHITE : (eLevel == LogLevel::Warning)
@@ -79,13 +79,14 @@ namespace ptp::log
                         ? "[Ok     ]" : "[Info   ]";
 
         std::cerr
+            << file << "(" << line << ")\n"
             << color
                 << levelString
-                << " "
-                << getTimestampFormat()
-                << " : "
-                << (m_bIsComplexFormattingEnable ? formatMessage(message) : message)
             << WHITE
+            << " "
+            << getTimestampFormat()
+            << " : "
+            << (m_bIsComplexFormattingEnable ? formatMessage(message) : message)
         << std::endl;
     }
 
