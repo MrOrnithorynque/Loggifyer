@@ -80,18 +80,29 @@ Output (no colors are shown in this readme output but don't worry your output wi
 
 <pre>
   <code>
-[Info   ] 0000-00-00 00:00:00.001 : This is a Info message.
-[Message] 0000-00-00 00:00:00.002 : This is just a simple message.
-<font color="#00CC00">[Ok     ] 0000-00-00 00:00:00.003 : This is a Ok message to tell you that everything working properly</font>
-<font color="#FFCC00">[Warning] 0000-00-00 00:00:00.004 : Be careful! you are looking good today. This was a Warning message</font>
-<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.005 : This is a Error log sample.
-[Error  ] 0000-00-00 00:00:00.006 : Only Error logs are displayed. because the log level is 4.</font>
-<font color="#FFCC00">[Warning] 0000-00-00 00:00:00.007 : This warning will be displayed.</font>
-<font color="#CC0000">[Error  ] 0000-00-00 00:00:00.008 : As you can see, only Error and Warning logs are displayed.</font>
-<font color="#00CC00">[Ok     ] 0000-00-00 00:00:00.009 : This Ok message will be displayed because logs are enabled.</font>
-[Info   ] 0000-00-00 00:00:00.010 : This is a Info message with complex formatting.
+/home/code/main.cpp(9)
+[Info   ] 2023-01-10 15:16:11.974 : This is a Info message.s
+/home/code/main.cpp(10)
+[Message] 2023-01-10 15:16:12.045 : This is just a simple message.
+/home/code/main.cpp(11)
+<font color="#00CC00">[Ok     ]</font> 2023-01-10 15:16:12.048 : This is a Ok message to tell you that everything working properly.
+/home/code/main.cpp(12)
+<font color="#FFCC00">[Warning]</font> 2023-01-10 15:16:12.051 : Be careful! you are looking good today. This was a Warning message.
+/home/code/main.cpp(13)
+<font color="#CC0000">[Error  ]</font> 2023-01-10 15:16:12.054 : This is a Error log sample.
+/home/code/main.cpp(18)
+<font color="#CC0000">[Error  ]</font> 2023-01-10 15:16:12.062 : Only Error logs are displayed. because the log level is 4.
+/home/code/main.cpp(24)
+<font color="#FFCC00">[Warning]</font> 2023-01-10 15:16:12.064 : This warning will be displayed.
+/home/code/main.cpp(25)
+<font color="#CC0000">[Error  ]</font> 2023-01-10 15:16:12.065 : As you can see, only Error and Warning logs are displayed.
+/home/code/main.cpp(35)
+<font color="#00CC00">[Ok     ]</font> 2023-01-10 15:16:12.068 : This Ok message will be displayed because logs are enabled.
+/home/code/main.cpp(39)
+[Info   ] 2023-01-10 15:16:12.069 : This is a Info message with complex formatting.
                                     Because complex formatting is enabled.
-[Info   ] 0000-00-00 00:00:00.011 : This is a Info message without complex formatting.
+/home/code/main.cpp(43)
+[Info   ] 2023-01-10 15:16:12.072 : This is a Info message without complex formatting.
 Because complex formatting is disabled.
   </code>
 </pre>
