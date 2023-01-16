@@ -20,7 +20,7 @@ namespace ptp::log
         va_list args;
         va_start(args, message);
 
-        #if defined __linux__
+        #if defined __linux__ || defined __APPLE__
 
             vsnprintf(buffer, sizeof(buffer), message, args);
 

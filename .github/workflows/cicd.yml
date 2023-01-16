@@ -1,27 +1,33 @@
-name: check if the project is building
+name: Check if the project is building
 
 on:
-  [push]
+  push
 
 jobs:
   build-test-ubuntu:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-      - name: install essential
-        run: sudo apt install build-essential
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: get-cmake
-        uses: lukka/get-cmake@v3.24.3
+    - name: Install essential
+      run: sudo apt install build-essential clang
 
-      - name: Get specific version CMake, v3.17.0
-        uses: lukka/get-cmake@latest
-        with:
-          cmakeVersion: 3.17.0
+    - name: Get specific version CMake, v3.17.0
+      uses: lukka/get-cmake@latest
+      with:
+        cmakeVersion: 3.17.0
 
-      - name: make project
-        run: |
-          mkdir -p build
-          cd build
-          cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON ..
-          cmake --build .
+    - name: Make project with GCC
+      run: |
+        mkdir -p build
+        cd build
+        cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON -DCMAKE_CXX_COMPILER=g++ ..
+        cmake --build .
+
+    - name: Make project with Clang
+      run: |
+        mkdir -p build_clang
+        cd build_clang
+        cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON -DCMAKE_CXX_COMPILER=clang++ ..
+        cmake --build .

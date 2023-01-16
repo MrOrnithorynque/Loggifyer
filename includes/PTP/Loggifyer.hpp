@@ -66,47 +66,47 @@ namespace ptplog = ptp::log;
 #define PTP_LOG_ENABLE_COMPLEX_FORMATTING   \
     PTP_LOG_COMPLEX_FORMATTING(true)
 
-/**
- * @brief Macro print message log message.
- *
- * @note It used printf format style.
- */
-#define PTP_LOG_MESSAGE(message, ...)                                                   \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL)          \
-        ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    /**
+     * @brief Macro print message log message.
+     *
+     * @note It used printf format style.
+     */
+    #define PTP_LOG_MESSAGE(message, ...)                                                   \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL)          \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
 
-/**
- * @brief Macro print info log message.
- *
- * @note It used printf format style.
- */
-#define PTP_LOG_INFO(message, ...)                                                  \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)         \
-        ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    /**
+     * @brief Macro print info log message.
+     *
+     * @note It used printf format style.
+     */
+    #define PTP_LOG_INFO(message, ...)                                                  \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)         \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
 
-/**
- * @brief Macro print ok log message.
- *
- * @note It used printf format style.
- */
-#define PTP_LOG_OK(message, ...)                                                        \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)           \
-        ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    /**
+     * @brief Macro print ok log message.
+     *
+     * @note It used printf format style.
+     */
+    #define PTP_LOG_OK(message, ...)                                                        \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)                 \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
 
-/**
- * @brief Macro print warning log message.
- *
- * @note It used printf format style.
- */
-#define PTP_LOG_WARNING(message, ...)                                                   \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)          \
-        ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    /**
+     * @brief Macro print warning log message.
+     *
+     * @note It used printf format style.
+     */
+    #define PTP_LOG_WARNING(message, ...)                                                   \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)            \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
 
-/**
- * @brief Macro print error log message.
- *
- * @note It used printf format style.
- */
-#define PTP_LOG_ERROR(message, ...)                                                 \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)        \
-        ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    /**
+     * @brief Macro print error log message.
+     *
+     * @note It used printf format style.
+     */
+    #define PTP_LOG_ERROR(message, ...)                                                     \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)              \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
