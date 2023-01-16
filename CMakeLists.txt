@@ -21,7 +21,7 @@ set(
     "${CMAKE_CURRENT_SOURCE_DIR}/includes/PTP/Loggifyer/Logger.hpp"
 )
 
-set(LOGGIFYER_HDRS ${HDRS})
+set(LOGGIFYER_INCLUDE_DIR ${HDRS})
 
 add_library(${PROJECT_NAME} STATIC ${SRCS} ${HDRS})
 
