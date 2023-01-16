@@ -36,7 +36,6 @@ else ()
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
-        -pedantic
         -Werror
         -Wall       # Enable all warnings, even extra ones.
         -pedantic   # Enable pedantic warnings.
