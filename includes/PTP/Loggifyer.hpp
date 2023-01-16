@@ -100,7 +100,7 @@ namespace ptplog = ptp::log;
  * @note It used printf format style.
  */
 #define PTP_LOG_OK(message, ...)                                                        \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)           \
+    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)                 \
         ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
 
 /**
@@ -109,7 +109,7 @@ namespace ptplog = ptp::log;
  * @note It used printf format style.
  */
 #define PTP_LOG_WARNING(message, ...)                                                   \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)          \
+    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)            \
         ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
 
 /**
@@ -117,13 +117,9 @@ namespace ptplog = ptp::log;
  *
  * @note It used printf format style.
  */
-#define PTP_LOG_ERROR(message, ...)                                                 \
-    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)        \
+#define PTP_LOG_ERROR(message, ...)                                                     \
+    if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)              \
         ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
-
-#ifdef __GNUC__
-#pragma GCC diagnostic pop
-#endif
 
 #ifdef __clang__
 #pragma clang diagnostic pop
