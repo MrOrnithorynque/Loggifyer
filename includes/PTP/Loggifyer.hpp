@@ -115,16 +115,19 @@ namespace ptplog = ptp::log;
 
 #endif // __GNUC__
 
-#if defined __clang__ || defined _MSC_VER
+#ifdef __clang__
 
     /**
      * @brief Macro print message log message.
      *
      * @note It used printf format style.
      */
-    #define PTP_LOG_MESSAGE(message, ...)                                                   \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL)          \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    #define PTP_LOG_MESSAGE(message, ...)                                               \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL)        \
+            _Pragma("clang diagnostic push")                                            \
+            _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"") \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);\
+            _Pragma("clang diagnostic pop")                                             \
 
     /**
      * @brief Macro print info log message.
@@ -132,29 +135,35 @@ namespace ptplog = ptp::log;
      * @note It used printf format style.
      */
     #define PTP_LOG_INFO(message, ...)                                                  \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)         \
-            _Pragma("clang diagnostic push") \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)           \
+            _Pragma("clang diagnostic push")                                            \
             _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"") \
             ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__); \
-            _Pragma("clang diagnostic pop")\
+            _Pragma("clang diagnostic pop")                                             \
 
     /**
      * @brief Macro print ok log message.
      *
      * @note It used printf format style.
      */
-    #define PTP_LOG_OK(message, ...)                                                        \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)                 \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    #define PTP_LOG_OK(message, ...)                                                    \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)             \
+            _Pragma("clang diagnostic push")                                            \
+            _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"") \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__); \
+            _Pragma("clang diagnostic pop")                                             \
 
     /**
      * @brief Macro print warning log message.
      *
      * @note It used printf format style.
      */
-    #define PTP_LOG_WARNING(message, ...)                                                   \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)            \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+    #define PTP_LOG_WARNING(message, ...)                                               \
+        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)        \
+            _Pragma("clang diagnostic push")                                            \
+            _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"") \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);\
+            _Pragma("clang diagnostic pop")                                             \
 
     /**
      * @brief Macro print error log message.
@@ -163,14 +172,9 @@ namespace ptplog = ptp::log;
      */
     #define PTP_LOG_ERROR(message, ...)                                                     \
         if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)              \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+            _Pragma("clang diagnostic push")                                                \
+            _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"")     \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__); \
+            _Pragma("clang diagnostic pop")                                                 \
 
-    #ifdef __clang__
-    #pragma clang diagnostic pop
-    #endif
-
-    #ifdef _MSC_VER
-    #pragma warning(pop)
-    #endif
-
-#endif // __clang__ || _MSC_VER
+#endif // __clang__

@@ -4,12 +4,7 @@
 
 int main()
 {
-    #ifdef __clang__
-    _Pragma("clang diagnostic push") \
-    _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"") \
     PTP_LOG_INFO("This is a Info message");
-    _Pragma("clang diagnostic pop")
-    #endif
     PTP_LOG_MESSAGE("This is just a simple message.");
     PTP_LOG_OK("This is a Ok message to tell you that everything working properly.");
     PTP_LOG_WARNING("Be careful! you are looking good today. This was a Warning message.");
