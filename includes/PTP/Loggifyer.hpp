@@ -1,5 +1,15 @@
 #pragma once
 
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
+#endif
+
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4349)
+#endif
+
 #include "Loggifyer/Logger.hpp"
 
 namespace ptplog = ptp::log;
@@ -110,3 +120,15 @@ namespace ptplog = ptp::log;
 #define PTP_LOG_ERROR(message, ...)                                                 \
     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)        \
         ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
