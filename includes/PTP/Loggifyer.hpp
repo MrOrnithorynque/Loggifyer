@@ -145,7 +145,10 @@ namespace ptplog = ptp::log;
      */
     #define PTP_LOG_INFO(message, ...)                                                  \
         if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)         \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__);
+            _Pragma("clang diagnostic push") \
+            _Pragma("clang diagnostic ignored \"-Wgnu-zero-variadic-macro-arguments\"") \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, message __VA_OPT__(,) __VA_ARGS__); \
+            _Pragma("clang diagnostic pop")\
 
     /**
      * @brief Macro print ok log message.
