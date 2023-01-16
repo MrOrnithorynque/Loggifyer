@@ -26,7 +26,10 @@ else ()
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
-        -std=c++20  # Use C++20
+        -Werror     # Treat all warnings as errors.
+        -Wall       # Enable all warnings, even extra ones.
+        -pedantic   # Enable pedantic warnings.
+        -std=c++20  # Use C++20.
         -g3         # Memory debug mode.
     )
 endif (MSVC)
