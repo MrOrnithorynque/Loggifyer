@@ -30,13 +30,14 @@ if (MSVC)
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
-        /WX # Treat all warnings as errors.
+        /WX         # Treat all warnings as errors.
     )
 else ()
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
-        -Werror
+        -pedantic   # Enable pedantic warnings.
+        -Werror     # Treat all warnings as errors.
         -Wall       # Enable all warnings, even extra ones.
         -pedantic   # Enable pedantic warnings.
         -std=c++20  # Use C++20.
