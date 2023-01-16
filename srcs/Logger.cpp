@@ -30,7 +30,7 @@ namespace ptp::log
 
         #else // unknown platform
 
-            writeMessage(LogLevel::Error, "Unknown platform.");
+            writeMessage(LogLevel::Error, "Unknown platform.", file, line);
             va_end(args);
             return;
 
