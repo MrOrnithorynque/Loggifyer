@@ -39,7 +39,7 @@ else ()
         -Werror
         -Wall       # Enable all warnings, even extra ones.
         -pedantic   # Enable pedantic warnings.
-        -std=c++17  # Use C++17.
+        -std=c++20  # Use C++20.
     )
 endif (MSVC)
 
