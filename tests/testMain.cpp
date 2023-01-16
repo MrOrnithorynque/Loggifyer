@@ -4,8 +4,6 @@
 
 int main()
 {
-    std::cout << __FILE__ << std::endl;
-    std::cout << __LINE__ << std::endl;
     PTP_LOG_INFO("This is a Info message.%s", "s");
     PTP_LOG_MESSAGE("This is just a simple message.");
     PTP_LOG_OK("This is a Ok message to tell you that everything working properly.");
@@ -33,14 +31,6 @@ int main()
     PTP_ENABLE_LOGS
 
     PTP_LOG_OK("This Ok message will be displayed because logs are enabled.");
-
-    PTP_LOG_COMPLEX_FORMATTING(true);
-
-    PTP_LOG_INFO("This is a Info message with complex formatting.\nBecause complex formatting is enabled.");
-
-    PTP_LOG_COMPLEX_FORMATTING(false);
-
-    PTP_LOG_INFO("This is a Info message without complex formatting.\nBecause complex formatting is disabled.");
 
     return 0;
 }
