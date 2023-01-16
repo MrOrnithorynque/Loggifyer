@@ -117,18 +117,6 @@ namespace ptplog = ptp::log;
 
 #if defined __clang__ || defined _MSC_VER
 
-// deactivate warning for variadic macro
-
-    #ifdef __clang__
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
-    #endif
-
-    #ifdef _MSC_VER
-    #pragma warning(push)
-    #pragma warning(disable: 4349)
-    #endif
-
     /**
      * @brief Macro print message log message.
      *
