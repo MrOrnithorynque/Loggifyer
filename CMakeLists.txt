@@ -32,14 +32,21 @@ if (MSVC)
         PRIVATE
         /WX         # Treat all warnings as errors.
     )
-else ()
+elseif (GCC)
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
         -pedantic   # Enable pedantic warnings.
         -Werror     # Treat all warnings as errors.
         -Wall       # Enable all warnings, even extra ones.
-        -pedantic   # Enable pedantic warnings.
+        -std=c++20  # Use C++20.
+    )
+elseif (CLANG)
+    target_compile_options(
+        ${PROJECT_NAME}
+        PRIVATE
+        -Werror     # Treat all warnings as errors.
+        -Wall       # Enable all warnings, even extra ones.
         -std=c++20  # Use C++20.
     )
 endif (MSVC)
