@@ -13,20 +13,22 @@ namespace ptp::log
         return oSingletonLogger;
     }
 
-    void Logger::log(LogLevel eLevel, const char* file, int line, const char* message, ...)
+    void Logger::log(LogLevel eLevel, const char* file, int line, std::ostringstream& message, ...)
     {
         char buffer[1024];
 
+        std::string sMessage = message.str();
+
         va_list args;
-        va_start(args, message);
+        va_start(args, sMessage.c_str());
 
         #if defined __linux__ || defined __APPLE__
 
-            vsnprintf(buffer, sizeof(buffer), message, args);
+            vsnprintf(buffer, sizeof(buffer), sMessage.c_str(), args);
 
         #elif defined _WIN32
 
-            vsprintf_s(buffer, sizeof(buffer), message, args);
+            vsprintf_s(buffer, sizeof(buffer), sMessage.c_str(), args);
 
         #else // unknown platform
 
@@ -75,11 +77,11 @@ namespace ptp::log
         std::string levelString = (eLevel == LogLevel::Message)
             ? "[Message]" : (eLevel == LogLevel::Warning)
                 ? "[Warning]" : (eLevel == LogLevel::Error)
-                    ? "[Error  ]" : (eLevel == LogLevel::Ok)
-                        ? "[Ok     ]" : "[Info   ]";
+                    ? "[Error]" : (eLevel == LogLevel::Ok)
+                        ? "[Ok]" : "[Info]";
 
         std::cerr
-            << file << "(" << line << ")\t"
+            /*<< file << "(" << line << ") "*/
             << color
                 << levelString
             << WHITE

@@ -60,7 +60,7 @@ namespace ptp::log
 
         static Logger& getInstance();
 
-        void log(LogLevel eLevel, const char* file, int line, const char* message, ...);
+        void log(LogLevel eLevel, const char* file, int line, std::ostringstream& message, ...);
 
         inline std::string getTimestampFormat() const;
 
