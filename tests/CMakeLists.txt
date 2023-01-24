@@ -22,7 +22,7 @@ if (MSVC)
         PRIVATE
         /WX # Treat all warnings as errors.
     )
-else ()
+elseif (GCC)
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
@@ -31,7 +31,16 @@ else ()
         -std=c++20  # Use C++20.
         -g3         # Memory debug mode.
     )
-endif (MSVC)
+elseif (CLANG)
+    target_compile_options(
+        ${PROJECT_NAME}
+        PRIVATE
+        -Werror     # Treat all warnings as errors.
+        -Wall       # Enable all warnings, even extra ones.
+        -std=c++20  # Use C++20.
+        -g3         # Memory debug mode.
+    )
+endif ()
 
 target_link_libraries(${PROJECT_NAME} Loggifyer)
 
