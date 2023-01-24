@@ -24,6 +24,7 @@ jobs:
         cd build
         cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON -DCMAKE_CXX_COMPILER=g++ ..
         cmake --build .
+        cd ..
         ./tests/Loggifyer_test
 
     - name: Make project with Clang
@@ -32,6 +33,7 @@ jobs:
         cd build_clang
         cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON -DCMAKE_CXX_COMPILER=clang++ ..
         cmake --build .
+        cd ..
         ./tests/Loggifyer_test
 
   build-test-windows:
