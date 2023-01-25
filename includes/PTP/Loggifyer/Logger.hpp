@@ -10,7 +10,6 @@
 
 #ifdef _WIN32
 
-    // Windows
     #include <windows.h>
 
     #define RED SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY)
@@ -20,9 +19,8 @@
     #define ORANGE SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY)
     #define WHITE SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY)
 
-#else
+#else // Linux or Mac
 
-    // Linux or Mac
     #define RED "\033[31m"
     #define YELLOW "\033[33m"
     #define GREEN "\033[32m"

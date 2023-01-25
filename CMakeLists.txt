@@ -10,6 +10,12 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 19.14)
+        message(STATUS "MSVC version is greater than or equal to 19.14")
+    endif()
+endif()
+
 set(
     SRCS
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Logger.cpp"
@@ -27,12 +33,19 @@ add_library(${PROJECT_NAME} STATIC ${SRCS} ${HDRS})
 
 # Set warning flags
 if (MSVC)
+
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 17)
+        message(FATAL_ERROR "MSVC version 17 or higher is required")
+    endif()
+
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
         /WX         # Treat all warnings as errors.
     )
+
 elseif (GCC)
+
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
@@ -41,7 +54,9 @@ elseif (GCC)
         -Wall       # Enable all warnings, even extra ones.
         -std=c++20  # Use C++20.
     )
+
 elseif (CLANG)
+
     target_compile_options(
         ${PROJECT_NAME}
         PRIVATE
@@ -49,6 +64,7 @@ elseif (CLANG)
         -Wall       # Enable all warnings, even extra ones.
         -std=c++20  # Use C++20.
     )
+
 endif (MSVC)
 
 target_include_directories(
