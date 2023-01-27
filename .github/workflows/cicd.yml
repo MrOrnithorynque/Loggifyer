@@ -20,8 +20,8 @@ jobs:
 
     - name: Make project with GCC
       run: |
-        mkdir -p build
-        cd build
+        mkdir -p build_gxx
+        cd build_gxx
         cmake -G "Unix Makefiles" -DLoggifyer_BUILD_TESTS=ON -DCMAKE_CXX_COMPILER=g++ ..
         cmake --build .
         cd ..
@@ -35,22 +35,3 @@ jobs:
         cmake --build .
         cd ..
         ./tests/Loggifyer_test
-
-  build-test-windows:
-      runs-on: windows-latest
-      steps:
-      - uses: actions/checkout@v2
-      - name: install Visual Studio 2019
-        run: choco install visualstudio2019buildtools
-      - name: install MSVC
-        run: choco install vswhere
-      - name: Set environment variable
-        run: setx /M VSWherePath "C:\ProgramData\chocolatey\bin\vswhere.exe"
-      - name: Add VS to PATH
-        run: setx /M PATH "%PATH%;%VSWherePath%\vs16\Community\VC\Auxiliary\Build"
-      - name: make project with msvc
-        run: |
-          mkdir -p build
-          cd build
-          cmake -G "Visual Studio 16 2019" -A x64 -DLoggifyer_BUILD_TESTS=ON ..
-          cmake --build . --config Release

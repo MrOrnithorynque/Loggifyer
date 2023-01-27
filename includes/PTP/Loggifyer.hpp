@@ -146,6 +146,11 @@ namespace ptplog = ptp::log;
 
 #elif defined __linux__ || __APPLE__
 
+    /**
+     * @brief Macro print log message.
+     * @param LogLevel log level.
+     * @param message log message.
+     */
     #define PTP_LOG(LogLevel, message, ...) { std::ostringstream stream; stream << message;                         \
         if (PTP_IS_LOG_ENABLE && LogLevel >= PTP_GET_LOG_LEVEL)                                                     \
             ptplog::Logger::getInstance().log(LogLevel, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }    \
@@ -159,9 +164,6 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_MESSAGE(message, ...) PTP_LOG(ptplog::LogLevel::Message, message, __VA_ARGS__)
-    // #define PTP_LOG_MESSAGE(message, ...) { std::ostringstream stream; stream << message;                                             \
-    //     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL)                                                      \
-    //         ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }  \
 
     /**
      * @brief Macro print info log message.
@@ -172,9 +174,6 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_INFO(message, ...) PTP_LOG(ptplog::LogLevel::Info, message, __VA_ARGS__)
-    // #define PTP_LOG_INFO(message, ...) { std::ostringstream stream; stream << message;                                             \
-    //     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)                                                      \
-    //         ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }  \
 
     /**
      * @brief Macro print ok log message.
@@ -185,9 +184,6 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_OK(message, ...) PTP_LOG(ptplog::LogLevel::Ok, message, __VA_ARGS__)
-    // #define PTP_LOG_OK(message, ...) { std::ostringstream stream; stream << message;                                             \
-    //     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)                                                      \
-    //         ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }  \
 
     /**
      * @brief Macro print warning log message.
@@ -198,9 +194,6 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_WARNING(message, ...) PTP_LOG(ptplog::LogLevel::Warning, message, __VA_ARGS__)
-    // #define PTP_LOG_WARNING(message, ...) { std::ostringstream stream; stream << message;                                             \
-    //     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)                                                      \
-    //         ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }  \
 
     /**
      * @brief Macro print error log message.
@@ -211,9 +204,6 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_ERROR(message, ...) PTP_LOG(ptplog::LogLevel::Error, message, __VA_ARGS__)
-    // #define PTP_LOG_ERROR(message, ...) { std::ostringstream stream; stream << message;                                             \
-    //     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)                                                      \
-    //         ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }  \
 
     /**
      * @brief Macro print fatal log message.
@@ -224,8 +214,5 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_FATAL(message, ...) PTP_LOG(ptplog::LogLevel::Fatal, message, __VA_ARGS__)
-    // #define PTP_LOG_FATAL(message, ...) { std::ostringstream stream; stream << message;                                             \
-    //     if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Fatal >= PTP_GET_LOG_LEVEL)                                                      \
-    //         ptplog::Logger::getInstance().log(ptplog::LogLevel::Fatal, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }  \
 
 #endif
