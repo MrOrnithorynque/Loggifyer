@@ -62,6 +62,11 @@ namespace ptp::log
         return timestamp.str();
     }
 
+    void Logger::setOutput(std::ostream& output)
+    {
+        m_output = &output;
+    }
+
 // private methods
 
     std::string Logger::formatMessage(const char* sMessage)
@@ -116,7 +121,7 @@ namespace ptp::log
                 default:                color = WHITE; break;
             }
 
-            std::cout << file << "(" << line << ") "
+            (*m_output) << file << "(" << line << ") "
                 << color
                     << levelString
                 << WHITE
@@ -128,7 +133,7 @@ namespace ptp::log
 
         #elif defined _WIN32
 
-            std::cout << file << "(" << line << ") ";
+            (*m_output) << file << "(" << line << ") ";
 
             // set the color
             switch (eLevel)
@@ -142,11 +147,11 @@ namespace ptp::log
                 default:                WHITE; break;
             }
 
-            std::cout << levelString;
+            (*m_output) << levelString;
 
             WHITE; // set the color back to white
 
-            std::cout << " "
+            (*m_output) << " "
                 << getTimestampFormat()
                 << " : "
                 << (m_bIsComplexFormattingEnable ? formatMessage(message) : message)

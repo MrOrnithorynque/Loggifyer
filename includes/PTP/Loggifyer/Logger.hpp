@@ -98,6 +98,16 @@ namespace ptp::log
         std::string getTimestampFormat() const;
 
         /**
+         * @brief Sets the output stream for the log messages.
+         *
+         * @param output The output stream for the log messages.
+         *
+         * @note The output can be a file, or just the standard output.
+         * @warning When threaded it can be dangerous to use the same output stream for multiple threads.
+         */
+        void setOutput(std::ostream& output);
+
+        /**
          * @brief Gets the current log level.
          *
          * @return LogLevel The current log level.
@@ -171,6 +181,8 @@ namespace ptp::log
         bool            m_bIsLogEnable                  = true;
 
         bool            m_bIsComplexFormattingEnable    = false;
+
+        std::ostream    *m_output                        = &std::cout;
 
     };
 

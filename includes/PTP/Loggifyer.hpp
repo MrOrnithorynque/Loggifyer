@@ -18,27 +18,27 @@ namespace ptplog = ptp::log;
 /**
  * @brief Macro to get the log level.
  */
-#define PTP_GET_LOG_LEVEL               ptplog::Logger::getInstance().getLogLevel()
+#define PTP_GET_LOG_LEVEL()              ptplog::Logger::getInstance().getLogLevel()
 
 /**
  * @brief Macro to get the current formatted timestamp.
  */
-#define PTP_GET_TIMESTAMP_FORMAT        ptplog::Logger::getInstance().getTimestampFormat()
+#define PTP_GET_TIMESTAMP_FORMAT()       ptplog::Logger::getInstance().getTimestampFormat()
 
 /**
  * @brief Macro to enable the logs.
  */
-#define PTP_ENABLE_LOGS                 ptplog::Logger::getInstance().enableLog();
+#define PTP_ENABLE_LOGS()                ptplog::Logger::getInstance().enableLog()
 
 /**
  * @brief Macro to disable the logs.
  */
-#define PTP_DISABLE_LOGS                ptplog::Logger::getInstance().disableLog();
+#define PTP_DISABLE_LOGS()               ptplog::Logger::getInstance().disableLog()
 
 /**
  * @brief Macro check if the logs are enable.
  */
-#define PTP_IS_LOG_ENABLE               ptplog::Logger::getInstance().ptplog::Logger::isLogEnabled()
+#define PTP_IS_LOG_ENABLE()              ptplog::Logger::getInstance().ptplog::Logger::isLogEnabled()
 
 /**
  * Macro to enable complex formatting on logs.
@@ -61,16 +61,23 @@ namespace ptplog = ptp::log;
     if (bEnableComplexFormatting == true)                       \
         ptplog::Logger::getInstance().enableComplexFormatting();\
     else                                                        \
-        ptplog::Logger::getInstance().disableComplexFormatting();
+        ptplog::Logger::getInstance().disableComplexFormatting(); void()
 
 #define PTP_LOG_ENABLE_COMPLEX_FORMATTING   \
     PTP_LOG_COMPLEX_FORMATTING(true)
 
+#define PTP_SET_OUTPUT(output) ptplog::Logger::getInstance().setOutput(output)
+
+#define PTP_SET_OUTPUT_FILE(fileName) { \
+    std::ofstream file(fileName);       \
+    PTP_SET_OUTPUT(file);               \
+} void() \
+
 #if defined _WIN32
 
     #define PTP_LOG(LogLevel, message, ...) { std::ostringstream stream; stream << message;                         \
-        if (PTP_IS_LOG_ENABLE && LogLevel >= PTP_GET_LOG_LEVEL)                                    \
-            ptplog::Logger::getInstance().log(LogLevel, __FILE__, __LINE__, stream, __VA_ARGS__); }\
+        if (PTP_IS_LOG_ENABLE() && LogLevel >= PTP_GET_LOG_LEVEL())                                    \
+            ptplog::Logger::getInstance().log(LogLevel, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print message log message.
@@ -81,8 +88,8 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_MESSAGE(message, ...) { std::ostringstream stream; stream << message;                           \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL)                                    \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, stream, __VA_ARGS__); }\
+        if (PTP_IS_LOG_ENABLE() && ptplog::LogLevel::Message >= PTP_GET_LOG_LEVEL())                                    \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Message, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print info log message.
@@ -93,8 +100,8 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_INFO(message, ...) { std::ostringstream stream; stream << message;                              \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL)                                       \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, stream, __VA_ARGS__); }   \
+        if (PTP_IS_LOG_ENABLE() && ptplog::LogLevel::Info >= PTP_GET_LOG_LEVEL())                                       \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Info, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print ok log message.
@@ -105,8 +112,8 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_OK(message, ...) { std::ostringstream stream; stream << message;                            \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL)                                     \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, stream, __VA_ARGS__); } \
+        if (PTP_IS_LOG_ENABLE() && ptplog::LogLevel::Ok >= PTP_GET_LOG_LEVEL())                                     \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Ok, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print warning log message.
@@ -117,8 +124,8 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_WARNING(message, ...) { std::ostringstream stream; stream << message;                           \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL)                                    \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, stream, __VA_ARGS__); }\
+        if (PTP_IS_LOG_ENABLE() && ptplog::LogLevel::Warning >= PTP_GET_LOG_LEVEL())                                    \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Warning, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print error log message.
@@ -129,8 +136,8 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_ERROR(message, ...) { std::ostringstream stream; stream << message;                             \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL)                                      \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, stream, __VA_ARGS__); }  \
+        if (PTP_IS_LOG_ENABLE() && ptplog::LogLevel::Error >= PTP_GET_LOG_LEVEL())                                      \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Error, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print error log message.
@@ -141,8 +148,8 @@ namespace ptplog = ptp::log;
      * @note But not both.
      */
     #define PTP_LOG_FATAL(message, ...) { std::ostringstream stream; stream << message;                             \
-        if (PTP_IS_LOG_ENABLE && ptplog::LogLevel::Fatal >= PTP_GET_LOG_LEVEL)                                      \
-            ptplog::Logger::getInstance().log(ptplog::LogLevel::Fatal, __FILE__, __LINE__, stream, __VA_ARGS__); }  \
+        if (PTP_IS_LOG_ENABLE() && ptplog::LogLevel::Fatal >= PTP_GET_LOG_LEVEL())                                      \
+            ptplog::Logger::getInstance().log(ptplog::LogLevel::Fatal, __FILE__, __LINE__, stream, __VA_ARGS__); } void()\
 
 #elif defined __linux__ || __APPLE__
 
@@ -152,8 +159,8 @@ namespace ptplog = ptp::log;
      * @param message log message.
      */
     #define PTP_LOG(LogLevel, message, ...) { std::ostringstream stream; stream << message;                         \
-        if (PTP_IS_LOG_ENABLE && LogLevel >= PTP_GET_LOG_LEVEL)                                                     \
-            ptplog::Logger::getInstance().log(LogLevel, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); }    \
+        if (PTP_IS_LOG_ENABLE() && LogLevel >= PTP_GET_LOG_LEVEL())                                                     \
+            ptplog::Logger::getInstance().log(LogLevel, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); } void()\
 
     /**
      * @brief Macro print message log message.

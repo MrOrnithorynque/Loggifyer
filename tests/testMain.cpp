@@ -1,9 +1,12 @@
 
+
+#include <fstream>
 #include <iostream>
 #include "PTP/Loggifyer.hpp"
 
 int main()
 {
+    PTP_SET_OUTPUT(std::cerr);
     PTP_LOG_INFO("This is a Info message" << " with a stream" << " and a number: " << 42);
     PTP_LOG_MESSAGE("This is just a simple message.");
     PTP_LOG_OK("This is a Ok message to tell you that everything working properly.");
@@ -13,7 +16,7 @@ int main()
     PTP_SET_LOG_LEVEL(ptp::log::LogLevel::Error);
 
     PTP_LOG_WARNING("This warning will not be displayed.");
-    PTP_LOG_ERROR("Only Error logs are displayed. because the log level is %d.", int(PTP_GET_LOG_LEVEL));
+    PTP_LOG_ERROR("Only Error logs are displayed. because the log level is %d.", int(PTP_GET_LOG_LEVEL()));
 
     PTP_SET_LOG_LEVEL(ptp::log::LogLevel::Warning);
 
@@ -24,11 +27,11 @@ int main()
 
     PTP_SET_LOG_LEVEL(ptp::log::LogLevel::Message);
 
-    PTP_DISABLE_LOGS
+    PTP_DISABLE_LOGS();
 
     PTP_LOG_ERROR("This error will not be displayed.");
 
-    PTP_ENABLE_LOGS
+    PTP_ENABLE_LOGS();
 
     PTP_LOG_OK("This Ok message will be displayed because logs are enabled.");
 
