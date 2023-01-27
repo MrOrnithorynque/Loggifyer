@@ -32,5 +32,7 @@ int main()
 
     PTP_LOG_OK("This Ok message will be displayed because logs are enabled.");
 
+    PTP_LOG_FATAL("This is a Fatal message. The program will be soon terminated.");
+
     return 0;
 }

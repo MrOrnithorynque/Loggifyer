@@ -20,7 +20,7 @@ namespace ptp::log
         std::string sMessage = message.str();
 
         va_list args;
-        va_start(args, sMessage);
+        va_start(args, message);
 
         #if defined __linux__ || defined __APPLE__
 
@@ -41,6 +41,25 @@ namespace ptp::log
         va_end(args);
 
         writeMessage(eLevel, buffer, file, line);
+    }
+
+    std::string Logger::getTimestampFormat() const
+    {
+        auto now = std::chrono::system_clock::now();
+
+        std::time_t t = std::chrono::system_clock::to_time_t(now);
+
+        std::tm tm = *std::localtime(&t);
+
+        std::stringstream timestamp;
+
+        auto elapsed        = now.time_since_epoch();
+
+        auto milliseconds   = std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() % 1000;
+
+        timestamp << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << "." << std::setw(3) << std::setfill('0') << milliseconds;
+
+        return timestamp.str();
     }
 
 // private methods
@@ -69,31 +88,32 @@ namespace ptp::log
     void Logger::writeMessage(LogLevel eLevel, const char* message, const char* file, int line)
     {
         std::string color;
-    
         std::string levelString;
+
         std::ostringstream out;
 
         switch (eLevel)
-            {
-                case LogLevel::Message: levelString = "[Message]"; break;
-                case LogLevel::Warning: levelString = "[Warning]"; break;
-                case LogLevel::Error:   levelString = "[Error]"; break;
-                case LogLevel::Ok:      levelString = "[Ok]"; break;
-                case LogLevel::Info:    levelString = "[Info]"; break;
-                default:                levelString = "[Message]"; break;
-            }
-        
+        {
+            case LogLevel::Fatal:   levelString = "[Fatal]"; break;
+            case LogLevel::Message: levelString = "[Message]"; break;
+            case LogLevel::Warning: levelString = "[Warning]"; break;
+            case LogLevel::Error:   levelString = "[Error]"; break;
+            case LogLevel::Ok:      levelString = "[Ok]"; break;
+            case LogLevel::Info:    levelString = "[Info]"; break;
+            default:                levelString = "[Message]"; break;
+        }
+
         #if defined __linux__ || defined __APPLE__
 
-            // set the color
             switch (eLevel)
             {
-                case LogLevel::Message: color = WHITE; 
-                case LogLevel::Warning: color = YELLOW;
-                case LogLevel::Error:   color = RED;   
-                case LogLevel::Ok:      color = GREEN; 
-                case LogLevel::Info:    color = WHITE; 
-                default:                color = WHITE; 
+                case LogLevel::Fatal:   color = FATAL_RED; break;
+                case LogLevel::Message: color = WHITE; break;
+                case LogLevel::Warning: color = YELLOW; break;
+                case LogLevel::Error:   color = RED; break;
+                case LogLevel::Ok:      color = GREEN; break;
+                case LogLevel::Info:    color = BOLD; break;
+                default:                color = WHITE; break;
             }
 
             std::cout << file << "(" << line << ") "
@@ -109,18 +129,19 @@ namespace ptp::log
         #elif defined _WIN32
 
             std::cout << file << "(" << line << ") ";
-        
+
             // set the color
             switch (eLevel)
             {
+                case LogLevel::Fatal:   FATAL_RED; break;
                 case LogLevel::Message: WHITE; break;
                 case LogLevel::Warning: YELLOW; break;
                 case LogLevel::Error:   RED; break;
                 case LogLevel::Ok:      GREEN; break;
-                case LogLevel::Info:    WHITE; break;
+                case LogLevel::Info:    BOLD; break;
                 default:                WHITE; break;
             }
-        
+
             std::cout << levelString;
 
             WHITE; // set the color back to white

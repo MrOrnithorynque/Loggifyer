@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 
 project(
     "Loggifyer"
-    VERSION 0.1 DESCRIPTION "Easy to use and simple logging librairy using only macros"
+    VERSION 0.2 DESCRIPTION "Easy to use and simple logging librairy using only macros."
     LANGUAGES CXX
 )
 
