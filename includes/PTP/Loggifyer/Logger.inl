@@ -47,6 +47,13 @@ namespace ptp::log
         m_oComplexFormattingMutex.unlock();
     }
 
+    inline void Logger::displayFilepath(bool bDisplayFilepath)
+    {
+        // m_oDisplatFilepath.lock();
+        m_bDisplayFilepath = bDisplayFilepath;
+        // m_oDisplatFilepath.unlock();
+    }
+
     inline bool Logger::isLogEnabled()
     {
         m_oEnableLogsMutex.lock();

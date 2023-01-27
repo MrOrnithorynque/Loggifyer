@@ -66,12 +66,14 @@ namespace ptplog = ptp::log;
 #define PTP_LOG_ENABLE_COMPLEX_FORMATTING   \
     PTP_LOG_COMPLEX_FORMATTING(true)
 
-#define PTP_SET_OUTPUT(output) ptplog::Logger::getInstance().setOutput(output)
+#define PTP_LOG_SET_OUTPUT(output) ptplog::Logger::getInstance().setOutput(output)
 
-#define PTP_SET_OUTPUT_FILE(fileName) { \
+#define PTP_LOG_SET_OUTPUT_FILE(fileName) { \
     std::ofstream file(fileName);       \
     PTP_SET_OUTPUT(file);               \
 } void() \
+
+#define PTP_LOG_DISPLAY_FILEPATH(bDisplayFilepath) ptplog::Logger::getInstance().displayFilepath(bDisplayFilepath)
 
 #if defined _WIN32
 

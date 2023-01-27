@@ -142,6 +142,13 @@ namespace ptp::log
         inline void disableComplexFormatting();
 
         /**
+         * @brief
+         *
+         * @param bDisplayFilepath
+         */
+        inline void displayFilepath(bool bDisplayFilepath);
+
+        /**
          * @brief Indicates whether logging is currently enabled.
          *
          * @return bool True if logging is enabled, false otherwise.
@@ -182,7 +189,9 @@ namespace ptp::log
 
         bool            m_bIsComplexFormattingEnable    = false;
 
-        std::ostream    *m_output                        = &std::cout;
+        bool            m_bDisplayFilepath              = true;
+
+        std::ostream    *m_output                       = &std::cout;
 
     };
 

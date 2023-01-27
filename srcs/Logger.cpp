@@ -95,16 +95,14 @@ namespace ptp::log
         std::string color;
         std::string levelString;
 
-        std::ostringstream out;
-
         switch (eLevel)
         {
-            case LogLevel::Fatal:   levelString = "[Fatal]"; break;
+            case LogLevel::Fatal:   levelString = "[Fatal  ]"; break;
             case LogLevel::Message: levelString = "[Message]"; break;
             case LogLevel::Warning: levelString = "[Warning]"; break;
-            case LogLevel::Error:   levelString = "[Error]"; break;
-            case LogLevel::Ok:      levelString = "[Ok]"; break;
-            case LogLevel::Info:    levelString = "[Info]"; break;
+            case LogLevel::Error:   levelString = "[Error  ]"; break;
+            case LogLevel::Ok:      levelString = "[Ok     ]"; break;
+            case LogLevel::Info:    levelString = "[Info   ]"; break;
             default:                levelString = "[Message]"; break;
         }
 
@@ -121,8 +119,8 @@ namespace ptp::log
                 default:                color = WHITE; break;
             }
 
-            (*m_output) << file << "(" << line << ") "
-                << color
+            (m_bDisplayFilepath ? ((*m_output) << file << "(" << line << ") ") : (*m_output) << "");
+            (*m_output) << color
                     << levelString
                 << WHITE
                 << " "
@@ -133,7 +131,7 @@ namespace ptp::log
 
         #elif defined _WIN32
 
-            (*m_output) << file << "(" << line << ") ";
+            (m_bDisplayFilepath ? ((*m_output) << file << "(" << line << ") ") : (*m_output) << "");
 
             // set the color
             switch (eLevel)
