@@ -12,8 +12,8 @@
 
     #include <windows.h>
 
-    #define BOLD        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY)
-    #define WHITE       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_BLUE | FOREGROUND_INTENSITY)
+    #define BOLD        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_BLUE | FOREGROUND_INTENSITY)
+    #define WHITE       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_BLUE)
     #define FATAL_RED   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED     | FOREGROUND_INTENSITY  | FOREGROUND_INTENSITY)
     #define ORANGE      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_INTENSITY)
     #define YELLOW      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_INTENSITY)
@@ -121,10 +121,12 @@ namespace ptp::log
          */
         inline void setLogLevel(LogLevel eLogLevel);
 
-        inline void setWorkspaceDir(const std::string &sWorkspaceDir)
-        {
-            m_sWorkspaceDir = sWorkspaceDir;
-        }
+        /**
+         * @brief Sets the workspace directory.
+         *
+         * @param sWorkspaceDir The workspace directory.
+         */
+        inline void setWorkspaceDir(const std::string &sWorkspaceDir);
 
         /**
          * @brief Enables logging.

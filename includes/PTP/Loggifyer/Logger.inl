@@ -19,6 +19,11 @@ namespace ptp::log
         m_oGlobalLogLevelMutex.unlock();
     }
 
+    inline void Logger::setWorkspaceDir(const std::string &sWorkspaceDir)
+    {
+        m_sWorkspaceDir = sWorkspaceDir;
+    }
+
     inline void Logger::enableLog()
     {
         m_oEnableLogsMutex.lock();
