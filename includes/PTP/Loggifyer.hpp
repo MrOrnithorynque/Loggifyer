@@ -73,6 +73,8 @@ namespace ptplog = ptp::log;
     PTP_SET_OUTPUT(file);               \
 } void() \
 
+#define PTP_LOG_SET_WORKSPACE_DIR(workspaceDir) ptplog::Logger::getInstance().setWorkspaceDir(workspaceDir)
+
 #define PTP_LOG_DISPLAY_FILEPATH(bDisplayFilepath) ptplog::Logger::getInstance().displayFilepath(bDisplayFilepath)
 
 #if defined _WIN32

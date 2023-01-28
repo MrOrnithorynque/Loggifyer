@@ -121,6 +121,11 @@ namespace ptp::log
          */
         inline void setLogLevel(LogLevel eLogLevel);
 
+        inline void setWorkspaceDir(const std::string &sWorkspaceDir)
+        {
+            m_sWorkspaceDir = sWorkspaceDir;
+        }
+
         /**
          * @brief Enables logging.
          */
@@ -173,6 +178,8 @@ namespace ptp::log
          */
         void writeMessage(LogLevel eLevel, const char* message, const char* file, int line);
 
+        void filepathWithoutWorkspaceDir(std::string& sFilepath);
+
         std::mutex      m_oMutex;
 
         std::mutex      m_oEnableLogsMutex;
@@ -191,7 +198,9 @@ namespace ptp::log
 
         bool            m_bDisplayFilepath              = true;
 
-        std::ostream    *m_output                       = &std::cout;
+        std::ostream*   m_output                       = &std::cout;
+
+        std::string     m_sWorkspaceDir                = "";
 
     };
 

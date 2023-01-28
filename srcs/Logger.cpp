@@ -93,7 +93,10 @@ namespace ptp::log
     void Logger::writeMessage(LogLevel eLevel, const char* message, const char* file, int line)
     {
         std::string color;
+        std::string sFilepath(file);
         std::string levelString;
+
+        filepathWithoutWorkspaceDir(sFilepath);
 
         switch (eLevel)
         {
@@ -119,7 +122,8 @@ namespace ptp::log
                 default:                color = WHITE; break;
             }
 
-            (m_bDisplayFilepath ? ((*m_output) << file << "(" << line << ") ") : (*m_output) << "");
+
+            (m_bDisplayFilepath ? ((*m_output) << sFilepath << ":" << line << ": ") : (*m_output) << "");
             (*m_output) << color
                     << levelString
                 << WHITE
@@ -156,6 +160,14 @@ namespace ptp::log
             << std::endl;
 
         #endif
+    }
+
+    void Logger::filepathWithoutWorkspaceDir(std::string& sFilepath)
+    {
+        if (sFilepath.find(m_sWorkspaceDir) == 0)
+        {
+            sFilepath.erase(0, m_sWorkspaceDir.length());
+        }
     }
 
 } // namespace ptp::log
