@@ -14,6 +14,8 @@ cmake-build:
 	mkdir -p build
 	cd build && cmake .. && cmake --build .
 
+clean-cmake-rebuild: fclean cmake-build
+
 # Build libLoggifyer.a library
 libLoggifyer.a: srcs/Logger.cpp includes/PTP/Loggifyer/Logger.hpp
 	$(CC) $(CFLAGS) -c ${SRCS} -o ${OBJS}

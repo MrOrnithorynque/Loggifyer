@@ -88,7 +88,7 @@ namespace ptp::log
          * @param message The message to be logged.
          * @param ... Additional parameters to be included in the log message.
          */
-        void log(LogLevel eLevel, const char* file, int line, std::ostringstream& message, ...);
+        void log(LogLevel eLevel, const char* file, int line, const std::ostringstream& message, ...);
 
         /**
          * @brief Gets the format of the timestamp included in the log messages.
