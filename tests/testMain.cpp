@@ -6,7 +6,8 @@
 
 int main()
 {
-    PTP_LOG_SET_OUTPUT(std::cerr);
+    std::ofstream logFile("log.txt");
+    PTP_LOG_SET_OUTPUT(std::cout);
     PTP_LOG_SET_WORKSPACE_DIR("/home");
     PTP_LOG_INFO("This is a Info message" << " with a stream" << " and a number: " << 42);
     PTP_LOG_MESSAGE("This is just a simple message.");

@@ -14,6 +14,7 @@ Loggifyer_test
 *.dat
 *.log
 *.map
+log.txt
 
 # Build directories
 build/
@@ -28,4 +29,5 @@ release/
 *.vcxproj.filters
 *.vcxproj.user
 *.vcxproj.rootnamespace
-.vscode/
+*.vscode/
+*.idea/
