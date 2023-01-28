@@ -12,8 +12,8 @@
 
     #include <windows.h>
 
-    #define BOLD        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY)
-    #define WHITE       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_BLUE | FOREGROUND_INTENSITY)
+    #define BOLD        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_BLUE | FOREGROUND_INTENSITY)
+    #define WHITE       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_BLUE)
     #define FATAL_RED   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED     | FOREGROUND_INTENSITY  | FOREGROUND_INTENSITY)
     #define ORANGE      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_INTENSITY)
     #define YELLOW      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED     | FOREGROUND_GREEN      | FOREGROUND_INTENSITY)
