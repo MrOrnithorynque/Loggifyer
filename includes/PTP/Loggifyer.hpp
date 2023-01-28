@@ -4,6 +4,10 @@
 
 namespace ptplog = ptp::log;
 
+/*
+ * The 'void()è at the end of some of the macro are here to force to write ';' at the end of the PT_LOG macro.
+ */
+
 /**
  * @brief Macro to initialize the logger.
  */

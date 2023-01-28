@@ -28,7 +28,7 @@ To install **Loggifyer**, follow these steps:
 1. Clone the repository or download the source code.
 2. Run CMake to generate the build files for your platform.
 3. Use the generated build files to build and install the library.
-## Usage
+## Usage (not updated yet but it's roughly the same)
 To use **Loggifyer** in your project, simply include the Loggifyer.hpp header file and link the **PTP_Loggifyer** library to your project.
 
 InAnyCppFile.cpp :
@@ -57,11 +57,11 @@ int main ( const int argc, const char** argv )
 
     PTP_SET_LOG_LEVEL(ptp::Loggifyer::LogLevel::Message);
 
-    PTP_DISABLE_LOGS
+    PTP_DISABLE_LOGS();
 
     PTP_LOG_ERROR("This error will not be displayed.");
 
-    PTP_ENABLE_LOGS
+    PTP_ENABLE_LOGS();
 
     PTP_LOG_OK("This Ok message will be displayed because logs are enabled.");
 
