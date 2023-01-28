@@ -121,10 +121,12 @@ namespace ptp::log
          */
         inline void setLogLevel(LogLevel eLogLevel);
 
-        inline void setWorkspaceDir(const std::string &sWorkspaceDir)
-        {
-            m_sWorkspaceDir = sWorkspaceDir;
-        }
+        /**
+         * @brief Sets the workspace directory.
+         *
+         * @param sWorkspaceDir The workspace directory.
+         */
+        inline void setWorkspaceDir(const std::string &sWorkspaceDir);
 
         /**
          * @brief Enables logging.
