@@ -13,21 +13,22 @@ namespace ptp::log
         return oSingletonLogger;
     }
 
-    void Logger::log(LogLevel eLevel, const char* file, int line, std::ostringstream& message, ...)
+    void Logger::log(LogLevel eLevel, const char* file, int line, const std::ostringstream& message, ...)
     {
         char buffer[1024];
 
         std::string sMessage = message.str();
 
         va_list args;
-        va_start(args, message);
 
         #if defined __linux__ || defined __APPLE__
 
+            va_start(args, message);
             vsnprintf(buffer, sizeof(buffer), sMessage.c_str(), args);
 
         #elif defined _WIN32
 
+            va_start(args, sMessage);
             vsprintf_s(buffer, sizeof(buffer), sMessage.c_str(), args);
 
         #else // unknown platform
