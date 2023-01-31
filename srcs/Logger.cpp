@@ -92,46 +92,47 @@ namespace ptp::log
 
     void Logger::writeMessage(LogLevel eLevel, const char* message, const char* file, int line)
     {
-        std::string color;
+        std::string sColor;
         std::string sFilepath(file);
-        std::string levelString;
+        std::string sLevelString;
 
         filepathWithoutWorkspaceDir(sFilepath);
 
         switch (eLevel)
         {
-            case LogLevel::Fatal:   levelString = "[Fatal  ]"; break;
-            case LogLevel::Message: levelString = "[Message]"; break;
-            case LogLevel::Warning: levelString = "[Warning]"; break;
-            case LogLevel::Error:   levelString = "[Error  ]"; break;
-            case LogLevel::Ok:      levelString = "[Ok     ]"; break;
-            case LogLevel::Info:    levelString = "[Info   ]"; break;
-            default:                levelString = "[Message]"; break;
+            case LogLevel::Fatal:   sLevelString = "[Fatal  ]"; break;
+            case LogLevel::Message: sLevelString = "[Message]"; break;
+            case LogLevel::Warning: sLevelString = "[Warning]"; break;
+            case LogLevel::Error:   sLevelString = "[Error  ]"; break;
+            case LogLevel::Ok:      sLevelString = "[Ok     ]"; break;
+            case LogLevel::Info:    sLevelString = "[Info   ]"; break;
+            default:                sLevelString = "[Message]"; break;
         }
 
         #if defined __linux__ || defined __APPLE__
 
             switch (eLevel)
             {
-                case LogLevel::Fatal:   color = FATAL_RED; break;
-                case LogLevel::Message: color = WHITE; break;
-                case LogLevel::Warning: color = YELLOW; break;
-                case LogLevel::Error:   color = RED; break;
-                case LogLevel::Ok:      color = GREEN; break;
-                case LogLevel::Info:    color = BOLD; break;
-                default:                color = WHITE; break;
+                case LogLevel::Fatal:   sColor = FATAL_RED; break;
+                case LogLevel::Message: sColor = WHITE; break;
+                case LogLevel::Warning: sColor = YELLOW; break;
+                case LogLevel::Error:   sColor = RED; break;
+                case LogLevel::Ok:      sColor = GREEN; break;
+                case LogLevel::Info:    sColor = BOLD; break;
+                default:                sColor = WHITE; break;
             }
 
-
+            m_oMutex.lock();
             (m_bDisplayFilepath ? ((*m_output) << sFilepath << ":" << line << ": ") : (*m_output) << "");
-            (*m_output) << color
-                    << levelString
+            (*m_output) << sColor
+                    << sLevelString
                 << WHITE
                 << " "
                 << getTimestampFormat()
                 << " : "
                 << (m_bIsComplexFormattingEnable ? formatMessage(message) : message)
             << std::endl;
+            m_oMutex.unlock();
 
         #elif defined _WIN32
 
@@ -149,7 +150,7 @@ namespace ptp::log
                 default:                WHITE; break;
             }
 
-            (*m_output) << levelString;
+            (*m_output) << sLevelString;
 
             WHITE; // set the color back to white
 
