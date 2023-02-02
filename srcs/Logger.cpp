@@ -151,6 +151,7 @@ namespace ptp::log
                 default:                WHITE; break;
             }
 
+            m_oMutex.lock();
             (*m_output) << sLevelString;
 
             WHITE; // set the color back to white
@@ -160,6 +161,7 @@ namespace ptp::log
                 << " : "
                 << (m_bIsComplexFormattingEnable ? formatMessage(message) : message)
             << std::endl;
+            m_oMutex.unlock();
 
         #endif
     }
