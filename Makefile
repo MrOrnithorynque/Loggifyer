@@ -32,5 +32,6 @@ clean:
 
 fclean: clean
 	rm -rf build
+	rm -rf ${OBJS}
 
 .PHONY: clean all cmake-build libLoggifyer.a testLoggifyer
