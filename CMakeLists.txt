@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.20)
 
 project(
     "Loggifyer"
@@ -9,6 +9,10 @@ project(
 # Set C++ standard to C++20
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if (APPLE)
+    set(CMAKE_OSX_ARCHITECTURES arm64;x86_64)
+endif()
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 19.14)
@@ -23,8 +27,8 @@ set(
 
 set(
     HDRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/includes/PTP/Loggifyer.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/includes/PTP/Loggifyer/Logger.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/includes/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/includes/Loggifyer/"
 )
 
 set(LOGGIFYER_INCLUDE_DIR ${HDRS})
@@ -79,8 +83,8 @@ set_target_properties(
     ${PROJECT_NAME}
 )
 
-option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" ON)
+# option(Loggifyer_BUILD_TESTS "Build the tests for Loggifyer" ON)
 
-if (Loggifyer_BUILD_TESTS)
+# if (Loggifyer_BUILD_TESTS)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/tests/")
-endif ()
+# endif ()

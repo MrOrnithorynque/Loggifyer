@@ -118,17 +118,26 @@ namespace ptplog = ptp::log;
         if (PTP_IS_LOG_ENABLE() && LogLevel >= PTP_GET_LOG_LEVEL())                                                     \
             ptplog::Logger::getInstance().log(LogLevel, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); } void() \
 
+    /**
+     * @brief Macro print log message.
+     * @param LogLevel log level.
+     * @param message log message.
+     */
+    #define PTP_LOG_CUSTOM(LogGroup, LogLevel, message, ...) { std::ostringstream stream; stream << message;                             \
+        if (PTP_IS_LOG_ENABLE() && LogLevel >= PTP_GET_LOG_LEVEL())                                                     \
+            ptplog::Logger::getInstance().logCustom(LogGroup, LogLevel, __FILE__, __LINE__, stream __VA_OPT__(,) __VA_ARGS__); } void() \
+
 #endif
 
 /**
  * @brief Macro print message log message.
  *
  * @note It used printf or cpp stream format style.
- * @note If you want to use printf format style : PTP_LOG_MESSAGE("message %d", 1);
- * @note If you want to use cpp stream format style : PTP_LOG_MESSAGE("message " << 1);
+ * @note If you want to use printf format style : PTP_LOG_DEBUG("message %d", 1);
+ * @note If you want to use cpp stream format style : PTP_LOG_DEBUG("message " << 1);
  * @note But not both.
  */
-#define PTP_LOG_MESSAGE(message, ...) PTP_LOG(ptplog::LogLevel::Message, message, __VA_ARGS__)
+#define PTP_LOG_DEBUG(message, ...) PTP_LOG(ptplog::LogLevel::Debug, message, __VA_ARGS__)
 
 /**
  * @brief Macro print info log message.

@@ -1,12 +1,17 @@
 #pragma once
 
+#include <filesystem>
 #include <iostream>
 #include <stdarg.h>
+#include <fstream>
 #include <iomanip>
 #include <sstream>
 #include <chrono>
+#include <atomic>
 #include <ctime>
 #include <mutex>
+#include <map>
+#include <vector>
 
 #ifdef _WIN32
 
@@ -39,13 +44,28 @@ namespace ptp::log
     enum class LogLevel
     {
         All     = -1,   /// @brief All log levels.
-        Message = 0,    /// @brief Message log level.
+        Debug   = 0,    /// @brief Debug log level.
         Info,           /// @brief Info log level.
         Ok,             /// @brief Ok log level.
         Warning,        /// @brief Warning log level.
         Error,          /// @brief Error log level.
         Fatal,          /// @brief Fatal log level.
         None,           /// @brief No log level.
+    };
+
+    /**
+     * @brief A map that associates a log level with a string.
+     */
+    static std::map<uint32_t, std::string> logLevel = {
+        {0, "DEBUG"},
+        {1, "INFO"},
+        {2, "OK"},
+        {3, "WARNING"},
+        {4, "ERROR"},
+        {5, "FATAL"},
+    };
+
+    static std::vector<std::string> logGroup = {
     };
 
     /**
@@ -65,8 +85,9 @@ namespace ptp::log
          *
          * The default constructor sets the log level to "debug" and enables logging.
          */
-        Logger() = default;
+        Logger();
 
+        ~Logger();
 
         Logger(Logger &) = delete;
 
@@ -88,7 +109,18 @@ namespace ptp::log
          * @param message The message to be logged.
          * @param ... Additional parameters to be included in the log message.
          */
-        void log(LogLevel eLevel, const char* file, int line, const std::ostringstream& message, ...);
+        void log(LogLevel eLevel, const char* file, int iLine, const std::ostringstream& message, ...);
+
+        /**
+         * @brief Logs a message at a specific level of severity.
+         *
+         * @param eLevel The severity level of the log message.
+         * @param file The file name where the log message was generated.
+         * @param line The line number where the log message was generated.
+         * @param message The message to be logged.
+         * @param ... Additional parameters to be included in the log message.
+         */
+        void logCustom(std::string sLogGroup, LogLevel eLevel, const char* file, int iLine, const std::ostringstream& message, ...);
 
         /**
          * @brief Gets the format of the timestamp included in the log messages.
@@ -178,31 +210,31 @@ namespace ptp::log
          * @param file The source file where the log call was made
          * @param line The line number in the source file where the log call was made
          */
-        void writeMessage(LogLevel eLevel, const char* message, const char* file, int line);
+        void writeMessage(LogLevel eLevel, const char* message, const char* file, int line, const std::string& sLogGroup = "");
 
         void filepathWithoutWorkspaceDir(std::string& sFilepath);
 
-        std::mutex      m_oMutex;
+        std::mutex          m_oOutputMutex;
 
-        std::mutex      m_oEnableLogsMutex;
+        std::mutex          m_oLogFileMutex;
 
-        std::mutex      m_oTimestampMutex;
+        std::mutex          m_oTimestampMutex;
 
-        std::mutex      m_oGlobalLogLevelMutex;
+        std::mutex          m_oGlobalLogLevelMutex;
 
-        std::mutex      m_oComplexFormattingMutex;
+        LogLevel            m_eGlobalLogLevel               = LogLevel::All;
 
-        LogLevel        m_eGlobalLogLevel               = LogLevel::Message;
+        std::atomic_bool    m_bIsLogEnable                  = true;
 
-        bool            m_bIsLogEnable                  = true;
+        std::atomic_bool    m_bIsComplexFormattingEnable    = false;
 
-        bool            m_bIsComplexFormattingEnable    = false;
+        std::atomic_bool    m_bDisplayFilepath              = true;
 
-        bool            m_bDisplayFilepath              = true;
+        std::ostream*       m_output                        = &std::cout;
 
-        std::ostream*   m_output                       = &std::cout;
+        std::ofstream       m_oFile;
 
-        std::string     m_sWorkspaceDir                = "";
+        std::string         m_sWorkspaceDir                 = "";
 
     };
 

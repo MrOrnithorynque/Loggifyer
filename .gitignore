@@ -8,13 +8,14 @@
 # Executables
 *.exe
 Loggifyer_test
+testMain
 
 # Other generated files
 *.bin
 *.dat
 *.log
 *.map
-log.txt
+log**.txt
 
 # Build directories
 build/
